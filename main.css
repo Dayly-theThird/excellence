@@ -1,0 +1,522 @@
+@font-face {
+  font-family: "Grand Hotel";
+  src: url("../fonts/GrandHotel-Regular.otf") format("opentype") tech(color-COLRv1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: lightyellow;
+  color: black;
+  accent-color: gold;
+}
+
+header,
+main,
+footer > div {
+  width: min(80vw + 4rem, 1440px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+header {
+  padding-top: 2rem;
+}
+
+main {
+  position: relative;
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+}
+
+footer {
+  padding: 1rem 0;
+  background-color: gray;
+  color: white;
+}
+
+footer a:link {
+  color: white
+}
+
+footer a:visited {
+  color: white
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+main a:active {
+  color: gray;
+  background-color: darkgray;
+  text-decoration: none;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+h2,
+strong {
+  font-size: 2rem;
+}
+
+main h3 {
+  font: 2rem "Grand Hotel";
+  color: darkgoldenrod;
+}
+
+hr {
+  margin: 2rem 1rem;
+}
+
+.l-constrained-inline {
+  display: inline-block;
+  width: fit-content;
+  margin: 0 4rem;
+}
+
+.l-flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.l-flexbox-big {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 4rem;
+}
+
+.l-flexbox-small {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+}
+
+.l-right {
+  float: right;
+}
+
+#main-slideshow,
+#main-intro {
+  position: relative;
+  overflow: hidden;
+}
+
+#main-slideshow {
+  height: 8rem;
+  width: min(80vw + 4rem, 1440px);
+}
+
+#main-slideshow-wrapper {
+  position: absolute;
+  overflow: hidden;
+  height: 8rem;
+  width: calc(3 * min(80vw + 4rem, 1440px));
+  animation: 16s ease-in-out 0s infinite alternate both running main-slideshow-slide;
+}
+
+.main-slide0,
+.main-slide1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  float: left;
+  height: 8rem;
+  width: min(80vw + 4rem, 1440px);
+}
+
+.main-slide0 {
+  background-color: gold;
+}
+
+.main-slide1 {
+  background-color: darkgoldenrod;
+}
+
+.main-slide0 p,
+.main-slide1 p{
+  display: inline;
+  margin: 0.5rem 0;
+}
+
+#main-intro {
+  position: relative;
+  height: 75vh;
+  background: center url("../images/intro_img2.jpg");
+}
+
+.contained-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+#absolute-textbox-main,
+#absolute-textbox-article0 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4rem;
+  margin: 10% 10%;
+}
+
+#absolute-textbox-main {
+  outline: thick solid white;
+  color: red;
+  text-shadow: 0.125rem 0.125rem 0 green;
+  background-color: gray;
+  box-shadow: 1rem 1rem 0.25rem white;
+  animation: 1s ease-out 0s 1 normal both running drop-up;
+}
+
+#absolute-textbox-article0 {
+  outline: thick solid green;
+  border-radius: 1rem;
+  background-color: transparent;
+}
+
+#absolute-textbox-article0 p {
+  color: white;
+  font-size: 2rem;
+  text-shadow: 0.125rem 0.125rem 0 black;
+}
+
+#article0,
+#article1,
+.sale-item {
+  flex: 1 1 0;
+  min-width: 16rem;
+}
+
+#article0,
+#article0 .contained-image,
+#article1 {
+  border-radius: 2rem;
+}
+
+#article0 {
+  position: relative;
+}
+
+#article0 .contained-image {
+  mask-image: linear-gradient(#80008080, #98FB9880)
+}
+
+#article1 {
+  background: linear-gradient(#80008080, #98FB9880);
+  border: thin solid white;
+  color: green;
+  text-align: left;
+}
+
+#article1 div {
+  margin: 4rem;
+}
+
+.modal-header {
+  height: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: thin solid gray;
+}
+
+.modal-header p {
+  float: left;
+  margin-left: 1rem;
+}
+
+.modal-footer {
+  padding: 1rem 0;
+  border-top: thin solid gray;
+  margin-top: 1rem;
+  background-color: darkgray;
+}
+
+#is-open-item1,
+#is-open-item2,
+#is-open-item3,
+#is-open-item4,
+#is-open-item5,
+#is-open-item6 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  background-color: #31313180;
+  pointer-events: none;
+  transition: all 500ms ease-in-out;
+}
+
+#is-open-item1:target,
+#is-open-item2:target,
+#is-open-item3:target,
+#is-open-item4:target,
+#is-open-item5:target,
+#is-open-item6:target {
+  z-index: 1;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#is-open-item1-modal,
+#is-open-item2-modal,
+#is-open-item3-modal,
+#is-open-item4-modal,
+#is-open-item5-modal,
+#is-open-item6-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 28rem;
+  height: fit-content;
+  margin: auto;
+  background-color: white;
+  text-align: center;
+  transform: translate(0, -100vh);
+  transition: all 500ms ease-in-out;
+}
+
+#is-open-item1:target #is-open-item1-modal {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+#is-open-item2:target #is-open-item2-modal {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+#is-open-item3:target #is-open-item3-modal {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+#is-open-item4:target #is-open-item4-modal {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+#is-open-item5:target #is-open-item5-modal {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+#is-open-item6:target #is-open-item6-modal {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+#logo {
+  width: 8rem;
+  height: 8rem;
+  border: thin solid gold;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.125rem 0.125rem gold;
+  animation: 1s ease-in-out 0s infinite alternate backwards running logo-grow;
+}
+
+#main-title {
+  color: gold;
+  font: italic 3rem "Grand Hotel";
+  animation: 2s cubic-bezier(1, -0.15, 0, 1.15) 0s infinite alternate none running slide0;
+}
+
+#main-subtitle {
+  text-align: center;
+  animation: 2s cubic-bezier(1, -0.15, 0, 1.15) 0s infinite alternate none running slide1;
+}
+
+#header-bar {
+  display: inline-block;
+  height: stretch;;
+  width: 0.25rem;
+  background: linear-gradient(gold, black);
+  animation: 2s cubic-bezier(1, -0.15, 0, 1.15) 0s infinite alternate none running tilt;
+}
+
+.sale-item-image {
+  height: 16rem;
+  width: auto;
+}
+
+.price-tag {
+  display: block;
+  font-size: 1.5rem;
+}
+
+.button-add-to-bag {
+  transform: translate(-0.25rem, -0.25rem);
+  display: block;
+  width: 8rem;
+  padding: 0.5rem 1rem;
+  margin: 2rem auto 0 auto;
+  background-color: darkgray;
+  color: white;
+  box-shadow: 0.5rem 0.5rem gray;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: all 50ms ease-in-out;
+}
+
+.button-add-to-bag:hover {
+  transform: translate(0, 0);
+  box-shadow: 0.25rem 0.25rem gray;
+}
+
+.button-add-to-bag:visited {
+  color: white;
+}
+
+.button-continue-shopping {
+  transform: translate(-0.125rem, -0.125rem);
+  display: block;
+  width: 8rem;
+  padding: 0.25rem 0.5rem;
+  margin: 0 auto;
+  background-color: white;
+  color: black;
+  box-shadow: 0.25rem 0.25rem gray;
+  text-decoration: none;
+  transition: all 50ms ease-in-out;
+}
+
+.button-continue-shopping:hover {
+  transform: translate(0, 0);
+  box-shadow: 0.125rem 0.125rem gray;
+}
+
+.button-continue-shopping:visited {
+  color: black;
+}
+
+.button-close {
+  display: inline-block;
+  float: right;
+  width: 2rem;
+  height: 2rem;
+  border-left: thin solid gray;
+  margin-bottom: 1rem;
+  background-color: darkgray;
+  color: red;
+  text-decoration: none;
+}
+
+.button-close:hover {
+  background-color: gray;
+}
+
+.button-close:visited {
+  color: red;
+}
+
+.link-icon {
+  height: 2rem;
+  width: auto;
+  margin-top: 1rem;
+}
+
+#copyright {
+  clear: right;
+}
+
+@keyframes logo-grow {
+  from {
+    transform: scale(1, 1);
+  }
+  to {
+    transform: scale(0, 0);
+  }
+}
+
+@keyframes slide0 {
+  0% {
+    transform: translateX(-2rem);
+  }
+  40% {
+    transform: translateX(-2rem);
+  }
+  60% {
+    transform: translateX(2rem);
+  }
+  100% {
+    transform: translateX(2rem);
+  }
+}
+
+@keyframes slide1 {
+  0% {
+    transform: translateX(2rem);
+  }
+  40% {
+    transform: translateX(2rem);
+  }
+  60% {
+    transform: translateX(-2rem);
+  }
+  100% {
+    transform: translateX(-2rem);
+  }
+}
+
+@keyframes tilt {
+  0% {
+    transform: rotate(-0.0625turn);
+  }
+  40% {
+    transform: rotate(-0.0625turn);
+  }
+  60% {
+    transform: rotate(0.0625turn);
+  }
+  100% {
+    transform: rotate(0.0625turn);
+  }
+}
+
+@keyframes main-slideshow-slide {
+  20% {
+    left: 0
+  }
+  40% {
+    left: calc(-1 * min(80vw + 4rem, 1440px));
+  }
+  60% {
+    left: calc(-1 * min(80vw + 4rem, 1440px));
+  }
+  80% {
+    left: calc(-2 * min(80vw + 4rem, 1440px));
+  }
+  100% {
+    left: calc(-2 * min(80vw + 4rem, 1440px));
+  }
+}
+
+@keyframes drop-up {
+  from {
+    top: 8rem;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
